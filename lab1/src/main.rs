@@ -36,8 +36,23 @@ fn main() {
     // ------------------------
     // POLIGON-2 START
     // ------------------------
+    let poly = vec![
+        (321, 335), (288, 286), (339, 251), (374, 302),
+    ];
+    let points: Vec<Vector2> = poly.iter()
+        .map(|&(x, y)| Vector2::new(x as f32, (height - y) as f32))
+        .collect();
+
+    fb.set_current_color(Color::BLUE);
+    fill_polygon(&mut fb, &points, None);
+
+    fb.set_current_color(Color::WHITE);
+    for i in 0..points.len() {
+        line(&mut fb, points[i], points[(i + 1) % points.len()]);
+    }
     // ------------------------
     // POLIGON-2 END
+    // ------------------------
 
     // ------------------------
     // POLIGON-3 START
